@@ -7,7 +7,7 @@ let news = [];
 const getLatestNews = async ()=> {
     // url 주소를 넣는 변수 : URL 인스턴스 활용
     const url = new URL(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
+        `https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=us&apiKey=${API_KEY}`
         );
     // url 호출
     const response = await fetch(url);
