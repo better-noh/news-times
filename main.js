@@ -9,7 +9,10 @@ menus.forEach((menu) =>
   menu.addEventListener("click", (event) => getNewsByCategory(event))
 );
 
-let url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`);
+// 실습용 url
+// let url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`);
+// 제출용 url
+let url = new URL(`https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=us&apiKey=${API_KEY}`);
 
 const getNews = async () => {
   const response = await fetch(url);
@@ -37,8 +40,13 @@ const getLatestNews = async () => {
 const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
   // console.log("category", category);
+  // 실습용 url
+  // url = new URL(
+  //   `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
+  //   );
+  // 제출용 url
   url = new URL(
-    `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
+    `https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
     );
 
   // 3. 뉴스 보여주기 
@@ -48,9 +56,14 @@ const getNewsByCategory = async (event) => {
 // 키워드로 뉴스 검색하는 함수
 const getNewsByKeyword = async () => {
   const keyword = document.getElementById("search-input").value;
-  // console.log("keyword", keyword);
+  console.log("keyword", keyword);
+  // 실습용 url
+  // url = new URL(
+  //   `https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`
+  //   );
+  // 제출용 url 
   url = new URL(
-    `https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`
+    `https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`
     );
 
   getNews();
