@@ -89,6 +89,12 @@
 }
 
 /* 검색창 보이고 숨기기 */
+.head-line-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .search-button {
   background-color: rgb(86, 123, 149);
   border: 1px solid rgb(50, 104, 145);
