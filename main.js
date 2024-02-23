@@ -15,11 +15,26 @@ menus.forEach((menu) =>
 let url = new URL(`https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=us&apiKey=${API_KEY}`);
 
 const getNews = async () => {
-  const response = await fetch(url);
-  const data = await response.json();
-  newsList = data.articles;
-  render();
-}
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    // 정상적인 상황인 경우
+    if (response.status === 200) {
+      // 검색했으나 결과가 없는 경우 에러 메시지 출력
+      if (data.articles.length === 0) {
+        throw new Error("No Result for this search!");
+      };
+      newsList = data.articles;
+      render();
+    }else {
+      throw new Error(data.message);
+    }
+    
+  } catch (error) {
+    console.log("error", error.message);
+    errorRender(error.message);
+  }
+};
 
 // 뉴스를 가져오기 위한 함수
 const getLatestNews = async () => {
@@ -108,6 +123,18 @@ const render = () => {
   // "news-board" 에 붙여서 newsHTML 을 보여준다.
   document.getElementById("news-board").innerHTML = newsHTML;
 };
+
+// 에러 메시지를 보여주는 render 함수
+const errorRender = (errorMessage)=> {
+  // 부트스트랩에서 가져온 Alert 코드 변형
+  const errorHTML = `<div class="alert alert-danger" role="alert">
+    ${errorMessage}
+  </div>`;
+
+  document.getElementById("news-board").innerHTML = errorHTML;
+};
+
+
 getLatestNews();
 
 // 사이드 메뉴 만들기
