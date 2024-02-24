@@ -10,11 +10,11 @@ menus.forEach((menu) =>
 );
 
 // 실습용 url
-let url = new URL(
-  `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
-);
+// let url = new URL(
+//   `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
+// );
 // 제출용 url
-// let url = new URL(`https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=us&apiKey=${API_KEY}`);
+let url = new URL(`https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=us&apiKey=${API_KEY}`);
 
 let totalResults = 0;
 let page = 1;
@@ -52,13 +52,13 @@ const getNews = async () => {
 const getLatestNews = async () => {
   // url 주소를 넣는 변수 : URL 인스턴스 활용
   // 제출용 url
-  // url = new URL(
-  //     `https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=us&apiKey=${API_KEY}`
-  //     );
-  // 실습용 url
   url = new URL(
-    `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
-  );
+      `https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=us&apiKey=${API_KEY}`
+      );
+  // 실습용 url
+  // url = new URL(
+  //   `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
+  // );
   // url 호출
   getNews();
 };
@@ -68,13 +68,13 @@ const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
   // console.log("category", category);
   // 실습용 url
-  url = new URL(
-    `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
-  );
-  // 제출용 url
   // url = new URL(
-  //   `https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
-  //   );
+  //   `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
+  // );
+  // 제출용 url
+  url = new URL(
+    `https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
+    );
 
   // 3. 뉴스 보여주기
   getNews();
@@ -85,13 +85,13 @@ const getNewsByKeyword = async () => {
   const keyword = document.getElementById("search-input").value;
   console.log("keyword", keyword);
   // 실습용 url
-  url = new URL(
-    `https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`
-  );
-  // 제출용 url
   // url = new URL(
-  //   `https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`
-  //   );
+  //   `https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`
+  // );
+  // 제출용 url
+  url = new URL(
+    `https://resilient-lebkuchen-c3be7b.netlify.app/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`
+    );
 
   getNews();
 };
