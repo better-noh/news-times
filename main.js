@@ -161,24 +161,40 @@ const paginationRender = () => {
 
   // totalPage : 필요한 페이지의 총 수,
   const totalPage = Math.ceil(totalResults / pageSize);
+
   // pageGroup : 내가 속해 있는 페이지 그룹,
   const pageGroup = Math.ceil(page / groupSize);
+
   // lastPage : 그룹의 마지막 페이지,
-  let lastPage = pageGroup * groupSize;
-  // 마지막 페이지그룹이 그룹사이즈보다 작다? lastPage = totalPage
-  if (lastPage > totalPage){
+  let lastPage = pageGroup * 5;
+  // 마지막 그룹이 5개 이하이면
+  if (lastPage > totalPage) {
     lastPage = totalPage;
   }
   
   // firstPage : 그룹의 첫 번째 페이지
-  const firstPage = lastPage - (groupSize - 1) <= 0? 1:lastPage - (groupSize - 1);
+  // 첫그룹이 5이하이면
+  const firstPage = lastPage - 4 <= 0 ? 1 : lastPage - 4;
 
   // 페이지네이션 그려주기
-  let paginationHTML = ``
+  let paginationHTML = `<li class="page-item ${page<=firstPage?"disabled":""}" onclick="moveToPage(1)">
+  <a class="page-link" href="#" aria-label="Previous">
+    <span aria-hidden="true">&laquo;</span>
+  </a>
+</li>
+<li class="page-item ${page<=firstPage?"disabled":""}" onclick="moveToPage(${page<=firstPage?page:page-1})"><a class="page-link" href="#">&lt;</a></li>`;
 
   for (let i=firstPage; i<=lastPage; i++) {
     paginationHTML += `<li class="page-item ${i===page?"active":""}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`;
   }
+
+  // Next 버튼 넣기
+  paginationHTML += `<li class="page-item ${page>=lastPage?"disabled":""}" onclick="moveToPage(${page>=lastPage?page:page+1})"><a class="page-link" href="#">&gt;</a></li>
+  <li class="page-item">
+      <a class="page-link ${page>=lastPage?"disabled":""}" onclick="moveToPage(${totalPage})" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>`;
 
   document.querySelector(".pagination").innerHTML = paginationHTML
 
